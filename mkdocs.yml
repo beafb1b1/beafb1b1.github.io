@@ -9,7 +9,7 @@ theme:
 # Repository
 repo_name: 'beafb1b1/beafb1b1.github.io'
 repo_url: 'https://github.com/beafb1b1/beafb1b1.github.io/'
-edit_url: 'blob/dev/docs/'
+edit_uri: 'blob/dev/docs/'
 
 # Copyright
 copyright: 'Copyright &copy; b1b1@r3kapig'
