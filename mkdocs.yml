@@ -2,16 +2,17 @@
 site_name: b1b1's share
 site_description: Kernel, Blockchain, CTF Crypto&PWN
 site_author: b1b1
-site_url: https://beafb1b1.github.io/
+site_url: https://beafb1b1.github.io/ 
 theme:
   name: 'material'
 
 # Repository
 repo_name: 'beafb1b1/beafb1b1.github.io'
 repo_url: 'https://github.com/beafb1b1/beafb1b1.github.io/'
+edit_url: 'blob/dev/docs/'
 
 # Copyright
-copyright: 'Copyright &copy; 2019- 2020 b1b1@r3kapig'
+copyright: 'Copyright &copy; b1b1@r3kapig'
 
 nav:
     - home: index.md
