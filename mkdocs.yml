@@ -7,8 +7,8 @@ theme:
   name: 'material'
 
 # Repository
-repo_name: 'beafb1b1/beafb1b1.github.io'
-repo_url: 'https://github.com/beafb1b1/beafb1b1.github.io/'
+repo_name: 'beafb1b1/share'
+repo_url: 'https://github.com/beafb1b1/share/'
 edit_uri: 'blob/master/docs/'
 
 # Copyright
