@@ -19,5 +19,7 @@ nav:
         - linux内核基础: kernel/linux_kernel_base.md
     - blockchain:
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
-    - vmescape:
-        - RWCTF2018 station-escape: vmescape/realworldctf_2018_stationescape.md
+        - email bot: blockchain/email_bot.md
+    - backup:
+        - RWCTF2018 station-escape: backup/realworldctf_2018_stationescape.md
+        - gitpage采坑: backup/gitpage_fuck.md
