@@ -56,6 +56,7 @@ nav:
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
         - N1CTF2019 h4ck Smart Contract: blockchain/n1ctf_2019_smartcontract.md
         - HCTF2018 ez2win: blockchain/hctf_2018_ez2win.md
+        - BCTF2018 Fake3d&EOSGAME: blockchain/bctf2018_fake3d_eosgame.md
         - email bot: blockchain/email_bot.md
     - backup:
         - RWCTF2018 station-escape: backup/realworldctf_2018_stationescape.md
