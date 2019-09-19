@@ -48,6 +48,12 @@
     
       <link rel="stylesheet" href="assets/stylesheets/application.30686662.css">
       
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
       
     
     
@@ -69,7 +75,9 @@
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     <svg class="md-svg">
       <defs>
@@ -174,6 +182,65 @@
       
         
       
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="." class="md-tabs__link md-tabs__link--active">
+        home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="kernel/linux_kernel_base/" class="md-tabs__link">
+          kernel
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="blockchain/realworldctf_2019_bank/" class="md-tabs__link">
+          blockchain
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="backup/realworldctf_2018_stationescape/" class="md-tabs__link">
+          backup
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
       
       <main class="md-main" role="main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -397,19 +464,35 @@
                   <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="welcome-to-b1b1s-share">Welcome to b1b1's share</h1>
+                <h1 id="welcome-to-b1b1s-share">Welcome to b1b1's share<a class="headerlink" href="#welcome-to-b1b1s-share" title="Permanent link">&para;</a></h1>
 <p><strong>b1b1</strong>: CTFer, leader of <a href="https://r3kapig.com">r3kapig</a></p>
 <p><strong>focus on</strong>: Kernel, Blockchain, CTF Crypto&amp;PWN</p>
-<p><strong>email</strong>: beafb1b1@gmail.com</p>
+<p><strong>email</strong>: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#98;&#101;&#97;&#102;&#98;&#49;&#98;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#98;&#101;&#97;&#102;&#98;&#49;&#98;&#49;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></p>
 <p><img alt="" src="/assets/images/b1b1.png" /></p>
                 
                   
                 
               
               
-                
-
-
+                <h2 id="__comments">Comments</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '3723c7324ba2e721d768',
+        clientSecret: '258669b5f96c0bb0d7c8460b2c272cf9cd3616fa',
+        repo: 'comment',
+        owner: '50u1w4y',
+        admin: ['50u1w4y'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
               
             </article>
           </div>
