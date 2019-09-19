@@ -2,7 +2,6 @@
 题目代码和exp：[https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank](https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank)
 schnorr签名，关键问题在这里：
 ```python
- elif msg[0] == '2':
                     req.sendall("Please send us your signature")
                     msg = self.rfile.readline().strip().decode('base64')
                     print balance
