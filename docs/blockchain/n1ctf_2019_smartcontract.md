@@ -86,4 +86,4 @@ url="http://47.244.41.61/challenge?address=0xfe03e84d6069fd0ca2679638eb80c448388
 while True:
     print requests.get(url).content.split("alert")[1].split("script")[0]
 ```
-Maybe an [email BOT](blockchain/realworldctf_2019_bank/email_bot/) is a better choice.
+Maybe an [email BOT](/blockchain/email_bot/) is a better choice.
