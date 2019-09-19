@@ -35,7 +35,7 @@ https://ethervm.io/decompile?address=0xd229628fd201a391cf0c4ae6169133c1ed93d00a&
 简单来说，还需要满足用户的地址最后为0x43或倒数2位为0xb1. 用https://vanity-eth.tk/
 爆破，得到地址，转账，获取flag。
 
-### EOSGAME
+# EOSGAME
 题目地址：0x804d8B0f43C57b5Ba940c1d1132d03f1da83631F @ ropsten
 
 赌博游戏，赌就行了，写个攻击合约在一个block里面多赌几次。20%中100倍奖励，很划算
