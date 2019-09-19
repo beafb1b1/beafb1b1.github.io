@@ -57,6 +57,9 @@ nav:
         - N1CTF2019 h4ck Smart Contract: blockchain/n1ctf_2019_smartcontract.md
         - HCTF2018 ez2win: blockchain/hctf_2018_ez2win.md
         - BCTF2018 Fake3d&EOSGAME: blockchain/bctf2018_fake3d_eosgame.md
+        - CISCN 2019 Daysbank: blockchain/ciscn2019_daysbank.md
+        - QWB 2019 babybank&babybet: blockchain/qwb2019_babybank_babybet.md
+        - ByteCTF 2019 bet&hf: blockchain/byte2019_bet_hf.md
         - email bot: blockchain/email_bot.md
     - backup:
         - RWCTF2018 station-escape: backup/realworldctf_2018_stationescape.md
