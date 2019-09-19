@@ -1,5 +1,5 @@
 # RealWorldCTF Final Station-Escape Writeup
-RWCTF Final 2018是我们觉得非常不错的一次竞赛，非常贴近实战，其中每道题目都值得深入研究。其中Station-Escape是一道VMWare Workstation逃逸的题目，我们觉得非常cool，所以进行了详细分析，这里非常感谢**长亭科技**的**flyyy**师傅贡献的非常优秀的题目和悉心的技术指导。本文分析工作由**r3kapig**的**Ne0**和**bibi**完成。
+RWCTF Final 2018是我们觉得非常不错的一次竞赛，非常贴近实战，其中每道题目都值得深入研究。其中Station-Escape是一道VMWare Workstation逃逸的题目，我们觉得非常cool，所以进行了详细分析，这里非常感谢长亭科技的flyyy师傅贡献的非常优秀的题目和悉心的技术指导。本文分析工作由r3kapig的Ne0和bibi完成。
 
 ## 前置知识
 在VMWare中，有一个奇特的攻击面，就是vmtools。vmtools帮助宿主机和客户机完成包括文件传输在内的一系列的通信和交互，其中使用了一种被称为backdoor的接口。backdoor接口是如何和宿主机进行通信的呢，我们观察backdoor函数的实现，可以发现如下代码：
