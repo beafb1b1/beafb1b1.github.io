@@ -13,7 +13,7 @@
         <meta name="description" content="Kernel, Blockchain, CTF Crypto&PWN">
       
       
-        <link rel="canonical" href="https://beafb1b1.github.io/blockchain/email_bot/">
+        <link rel="canonical" href="https://beafb1b1.github.io/blockchain/byte2019_bet_hf/">
       
       
         <meta name="author" content="b1b1">
@@ -42,7 +42,7 @@
     
     
       
-        <title>email bot - b1b1's share</title>
+        <title>ByteCTF 2019 bet&hf - b1b1's share</title>
       
     
     
@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#waiting-for-complete" tabindex="1" class="md-skip">
+      <a href="#bytectf-2019-bet-hf" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -117,7 +117,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                email bot
+                ByteCTF 2019 bet&hf
               
             </span>
           
@@ -428,18 +428,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../byte2019_bet_hf/" title="ByteCTF 2019 bet&hf" class="md-nav__link">
-      ByteCTF 2019 bet&hf
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -447,26 +435,37 @@
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        email bot
+        ByteCTF 2019 bet&hf
       </label>
     
-    <a href="./" title="email bot" class="md-nav__link md-nav__link--active">
-      email bot
+    <a href="./" title="ByteCTF 2019 bet&hf" class="md-nav__link md-nav__link--active">
+      ByteCTF 2019 bet&hf
     </a>
     
       
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#waiting-for-complete" class="md-nav__link">
-    waiting for complete
+  <a href="#bet" class="md-nav__link">
+    bet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hf" class="md-nav__link">
+    hf
   </a>
   
 </li>
@@ -479,6 +478,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../email_bot/" title="email bot" class="md-nav__link">
+      email bot
+    </a>
   </li>
 
         
@@ -549,13 +560,22 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#waiting-for-complete" class="md-nav__link">
-    waiting for complete
+  <a href="#bet" class="md-nav__link">
+    bet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hf" class="md-nav__link">
+    hf
   </a>
   
 </li>
@@ -576,12 +596,124 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/blockchain/email_bot.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/blockchain/byte2019_bet_hf.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>email bot</h1>
-                
-                <h2 id="waiting-for-complete">waiting for complete<a class="headerlink" href="#waiting-for-complete" title="Permanent link">&para;</a></h2>
+                <h1 id="bytectf-2019-bet-hf">ByteCTF 2019 bet &amp; hf<a class="headerlink" href="#bytectf-2019-bet-hf" title="Permanent link">&para;</a></h1>
+<p><a href="https://github.com/beafb1b1/challenges/tree/master/bytectf/bet_blockchain_bibi">bet</a></p>
+<p><a href="https://github.com/beafb1b1/challenges/tree/master/bytectf/hf_blockchain_bibi">hf</a></p>
+<h2 id="bet">bet<a class="headerlink" href="#bet" title="Permanent link">&para;</a></h2>
+<p>本题目是一个以太坊智能合约题目</p>
+<p>首先需要进行evm的逆向，逆向出整体程序功能</p>
+<p>首先我们想要payforflag，需要有10w余额
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">payforflag</span><span class="p">(</span><span class="nx">string</span> <span class="nx">b64email</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">);</span>
+        <span class="nx">emit</span> <span class="nx">SendFlag</span><span class="p">(</span><span class="nx">b64email</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+可以逆向出一个存钱函数和一个空投函数
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">deposit</span><span class="p">()</span> <span class="nx">payable</span><span class="p">{</span>
+        <span class="nx">uint</span> <span class="nx">geteth</span><span class="o">=</span><span class="nx">msg</span><span class="p">.</span><span class="nx">value</span><span class="o">/</span><span class="mi">1000000000000000000</span><span class="p">;</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="nx">geteth</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">profit</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">gift</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nx">gift</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>还有一个betgame
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">betgame</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">secretguess</span><span class="p">){</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">secretguess</span><span class="o">==</span><span class="nx">secret</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>
+            <span class="nx">isbet</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div></p>
+<p>只要能够猜对secret 我们就可以用1个token bet出来2个token</p>
+<p>Secret可以通过直接读取链上信息获得，也可以利用如下漏洞进行修改</p>
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">Bet</span><span class="p">()</span> <span class="kr">public</span><span class="p">{</span>
+        <span class="nx">owner</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>这里存在构造函数失控问题，通过执行Bet方法可以修改owner</p>
+<p>修改owner后可以执行set secret方法</p>
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">setsecret</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">secretrcv</span><span class="p">)</span> <span class="nx">only_owner</span> <span class="p">{</span>
+        <span class="nx">secret</span><span class="o">=</span><span class="nx">secretrcv</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>然后我们使用profit可以获得1个token
+接下来执行betgame方法，可以获得两个token 并且把msgsender的isbet标志位变为1</p>
+<p>因为我们已经是owner了 所以可以执行doublebetgame方法，在这里如果我们只有1个token的话，可以通过故意bet失败的方式，实现整形溢出</p>
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">doublebetgame</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">secretguess</span><span class="p">)</span> <span class="nx">only_owner</span><span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">isbet</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">==</span><span class="mi">1</span><span class="p">);</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-=</span><span class="mi">2</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">secretguess</span><span class="o">==</span><span class="nx">secret</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>但是因为isbet标志位的问题，我们现在有两个token，所以我们可以再次执行一次betgame并故意输掉1个token，让我们的token数量保持在1从而执行doublebetgame实现溢出。最后payforflag</p>
+<h2 id="hf">hf<a class="headerlink" href="#hf" title="Permanent link">&para;</a></h2>
+<p>以太坊智能合约题目，首先需要对evm进行逆向。</p>
+<p>目标是执行payforflag。</p>
+<p>首先有一个空投函数：
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">profit</span><span class="p">()</span> <span class="kr">public</span><span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">gift</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">==</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nx">gift</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div></p>
+<p>然后我们向合约的转账会变成我们的余额
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">hfvote</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">payable</span><span class="p">{</span>
+        <span class="nx">uint</span> <span class="nx">geteth</span><span class="o">=</span><span class="nx">msg</span><span class="p">.</span><span class="nx">value</span><span class="o">/</span><span class="mi">1000000000000000000</span><span class="p">;</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">+=</span><span class="nx">geteth</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+漏洞在ubw函数中：</p>
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">ubw</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">payable</span><span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="nx">ether</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">node</span> <span class="nx">storage</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">node0</span><span class="p">;</span>
+            <span class="nx">n</span><span class="p">.</span><span class="nx">nodeadress</span><span class="o">=</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">;</span>
+            <span class="nx">n</span><span class="p">.</span><span class="nx">nodenumber</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="nx">n</span><span class="p">.</span><span class="nx">nodeadress</span><span class="o">=</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">;</span>
+            <span class="nx">n</span><span class="p">.</span><span class="nx">nodenumber</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>函数中的第二个分支不存在初始化，n在执行的时候会形成未初始化漏洞，那么只要我们进入第二个分支就会修改storage中的第一个值为我们的地址，第二个值为2
+<div class="codehilite"><pre><span></span>    <span class="nx">address</span> <span class="nx">secret</span><span class="p">;</span>
+    <span class="nx">uint</span> <span class="nx">count</span><span class="p">;</span>
+    <span class="nx">address</span> <span class="nx">owner</span><span class="p">;</span>
+</pre></div>
+第一个值为secret
+因此通过未初始化漏洞我们可以执行onlySecret修饰的 fate函数，fate函数中存在整形溢出漏洞
+<div class="codehilite"><pre><span></span>        <span class="nx">require</span><span class="p">(</span><span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-</span><span class="nx">value</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-=</span><span class="nx">value</span><span class="p">;</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">to</span><span class="p">]</span><span class="o">+=</span><span class="nx">value</span><span class="p">;</span>
+</pre></div>
+通过整形溢出，我们可以获得大量余额，然后payforflag即可获得flag：
+<div class="codehilite"><pre><span></span>    <span class="kd">function</span> <span class="nx">payforflag</span><span class="p">(</span><span class="nx">string</span> <span class="nx">b64email</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">);</span>
+        <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="nx">owner</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="nx">address</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">balance</span><span class="p">);</span>
+        <span class="nx">emit</span> <span class="nx">SendFlag</span><span class="p">(</span><span class="nx">b64email</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div></p>
                 
                   
                 
@@ -618,7 +750,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../byte2019_bet_hf/" title="ByteCTF 2019 bet&hf" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../qwb2019_babybank_babybet/" title="QWB 2019 babybank&babybet" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -627,19 +759,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                ByteCTF 2019 bet&hf
+                QWB 2019 babybank&babybet
               </span>
             </div>
           </a>
         
         
-          <a href="../../backup/realworldctf_2018_stationescape/" title="RWCTF2018 station-escape" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../email_bot/" title="email bot" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                RWCTF2018 station-escape
+                email bot
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
