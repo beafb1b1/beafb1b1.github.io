@@ -1,16 +1,18 @@
 ## 分析
+
 题目代码和exp：[https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank](https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank)
+
 schnorr签名，关键问题在这里：
 ```python
-                    req.sendall("Please send us your signature")
-                    msg = self.rfile.readline().strip().decode('base64')
-                    print balance
-                    print "gggggggg"
-                    print "verify's pubkey",point_add(userPk, pk)
-                    if schnorr_verify('WITHDRAW', point_add(userPk, pk), msg) and balance > 0:
-                        print "flag!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                        req.sendall("Here is your coin: %s\n" % FLAG)
-                    print "gggggggg"
+req.sendall("Please send us your signature")
+msg = self.rfile.readline().strip().decode('base64')
+print balance
+print "gggggggg"
+print "verify's pubkey",point_add(userPk, pk)
+if schnorr_verify('WITHDRAW', point_add(userPk, pk), msg) and balance > 0:
+    print "flag!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    req.sendall("Here is your coin: %s\n" % FLAG)
+print "gggggggg"
 ```
 这里直接对用于提供的公钥和服务器提供的公钥进行了加法，所以这里可以实施Rogue attack，原理很简单，因为我们不知道point_add(userPk, pk)后的私钥是什么，我们只知道userPk对应的私钥，那么我们可以构造rogue_userPk=userPk-pk, 虽然我们也不知道rogue_userPk的私钥，但是不需要知道，服务器接收到rogue_userPk后会进行rogue_userPk+pk作为公钥进行认证，这里rogue_userPk+pk=userPk，私钥已知，所以可以进行签名。那么问题的关键是如何构造对应的point_sub，其实非常简单，椭圆曲线上的点取y轴对称的点相加就可以，也就是：
 ```python
