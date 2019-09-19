@@ -1,8 +1,8 @@
 # 第三届强网杯babybank&babybet
 
-[babybank](https://github.com/beafb1b1/challenges/tree/master/qwb/2019_crypto_babybank)
+[babybank题目和exp](https://github.com/beafb1b1/challenges/tree/master/qwb/2019_crypto_babybank)
 
-[babybet](https://github.com/beafb1b1/challenges/tree/master/qwb/2019_crypto_babybet)
+[babybet题目和exp](https://github.com/beafb1b1/challenges/tree/master/qwb/2019_crypto_babybet)
 
 ## babybank
 

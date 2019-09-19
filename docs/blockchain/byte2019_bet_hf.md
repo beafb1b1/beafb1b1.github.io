@@ -1,8 +1,8 @@
 # ByteCTF 2019 bet & hf
 
-[bet](https://github.com/beafb1b1/challenges/tree/master/bytectf/bet_blockchain_bibi)
+[bet题目和exp](https://github.com/beafb1b1/challenges/tree/master/bytectf/bet_blockchain_bibi)
 
-[hf](https://github.com/beafb1b1/challenges/tree/master/bytectf/hf_blockchain_bibi)
+[hf题目和exp](https://github.com/beafb1b1/challenges/tree/master/bytectf/hf_blockchain_bibi)
 
 ## bet
 
