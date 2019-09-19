@@ -91,7 +91,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#waiting-for-complete" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -381,8 +381,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#waiting-for-complete" class="md-nav__link">
-    waiting for complete
+  <a href="#_1" class="md-nav__link">
+    分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploit" class="md-nav__link">
+    exploit
   </a>
   
 </li>
@@ -482,8 +489,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#waiting-for-complete" class="md-nav__link">
-    waiting for complete
+  <a href="#_1" class="md-nav__link">
+    分析
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exploit" class="md-nav__link">
+    exploit
   </a>
   
 </li>
@@ -509,7 +523,80 @@
                 
                   <h1>RWCTF2019 bank</h1>
                 
-                <h2 id="waiting-for-complete">waiting for complete<a class="headerlink" href="#waiting-for-complete" title="Permanent link">&para;</a></h2>
+                <h2 id="_1">分析<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>题目代码和exp：<a href="https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank">https://github.com/beafb1b1/challenges/tree/master/rwctf/2019_bank</a>
+schnorr签名，关键问题在这里：
+<div class="codehilite"><pre><span></span>                    <span class="n">req</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s2">&quot;Please send us your signature&quot;</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rfile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;base64&#39;</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="n">balance</span>
+                    <span class="k">print</span> <span class="s2">&quot;gggggggg&quot;</span>
+                    <span class="k">print</span> <span class="s2">&quot;verify&#39;s pubkey&quot;</span><span class="p">,</span><span class="n">point_add</span><span class="p">(</span><span class="n">userPk</span><span class="p">,</span> <span class="n">pk</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">schnorr_verify</span><span class="p">(</span><span class="s1">&#39;WITHDRAW&#39;</span><span class="p">,</span> <span class="n">point_add</span><span class="p">(</span><span class="n">userPk</span><span class="p">,</span> <span class="n">pk</span><span class="p">),</span> <span class="n">msg</span><span class="p">)</span> <span class="ow">and</span> <span class="n">balance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">print</span> <span class="s2">&quot;flag!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!&quot;</span>
+                        <span class="n">req</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="s2">&quot;Here is your coin: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">FLAG</span><span class="p">)</span>
+                    <span class="k">print</span> <span class="s2">&quot;gggggggg&quot;</span>
+</pre></div>
+这里直接对用于提供的公钥和服务器提供的公钥进行了加法，所以这里可以实施Rogue attack，原理很简单，因为我们不知道point_add(userPk, pk)后的私钥是什么，我们只知道userPk对应的私钥，那么我们可以构造rogue_userPk=userPk-pk, 虽然我们也不知道rogue_userPk的私钥，但是不需要知道，服务器接收到rogue_userPk后会进行rogue_userPk+pk作为公钥进行认证，这里rogue_userPk+pk=userPk，私钥已知，所以可以进行签名。那么问题的关键是如何构造对应的point_sub，其实非常简单，椭圆曲线上的点取y轴对称的点相加就可以，也就是：
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">point_sub</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">):</span>
+    <span class="n">newp2</span><span class="o">=</span><span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">-</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">point_add</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">newp2</span><span class="p">)</span>
+</pre></div></p>
+<h2 id="exploit">exploit<a class="headerlink" href="#exploit" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">zio</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">schnorr</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+<span class="n">target</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;tcp.realworldctf.com&quot;</span><span class="p">,</span><span class="mi">20014</span><span class="p">)</span>
+<span class="c1">#target=(&quot;127.0.0.1&quot;,20014)</span>
+<span class="n">io</span><span class="o">=</span><span class="n">zio</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">print_read</span> <span class="o">=</span> <span class="n">COLORED</span><span class="p">(</span><span class="n">REPR</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">),</span> <span class="n">print_write</span> <span class="o">=</span> <span class="n">COLORED</span><span class="p">(</span><span class="n">REPR</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">),</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">100000</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">pass_proof</span><span class="p">(</span><span class="n">io</span><span class="p">):</span>
+    <span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;starting with &quot;</span><span class="p">)</span>
+    <span class="n">start</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">end</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">==</span><span class="s2">&quot;0000&quot;</span><span class="p">:</span>
+            <span class="n">io</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="p">)</span>
+            <span class="k">return</span>
+
+
+<span class="n">pass_proof</span><span class="p">(</span><span class="n">io</span><span class="p">)</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;Please tell us your public key:&quot;</span><span class="p">)</span>
+<span class="n">mysk</span><span class="p">,</span> <span class="n">mypk</span> <span class="o">=</span> <span class="n">generate_keys</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">mysk</span>
+<span class="k">print</span> <span class="n">mypk</span>
+<span class="n">send_pubkey</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">mypk</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">mypk</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">send_pubkey</span><span class="p">)</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;first priority!&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s2">&quot;3&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;himself as one of us: (&quot;</span><span class="p">)</span>
+<span class="n">getpubkey</span><span class="o">=</span><span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="n">pubkey</span><span class="o">=</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">getpubkey</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)),</span><span class="nb">int</span><span class="p">(</span><span class="n">getpubkey</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;L&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="k">print</span> <span class="n">pubkey</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;Please tell us your public key:&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">send_pubkey</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;our first priority!&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;Please send us your signature&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">schnorr_sign</span><span class="p">(</span><span class="s2">&quot;DEPOSIT&quot;</span><span class="p">,</span> <span class="n">mysk</span><span class="p">)))</span>
+
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;Please tell us your public key:&quot;</span><span class="p">)</span>
+<span class="n">roguepk</span><span class="o">=</span><span class="n">point_sub</span><span class="p">(</span><span class="n">mypk</span><span class="p">,</span><span class="n">pubkey</span><span class="p">)</span>
+<span class="n">send_roguepubkey</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">roguepk</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">roguepk</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">send_roguepubkey</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;our first priority!&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;base64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="n">io</span><span class="o">.</span><span class="n">read_until</span><span class="p">(</span><span class="s2">&quot;Please send us your signature&quot;</span><span class="p">)</span>
+<span class="n">io</span><span class="o">.</span><span class="n">writeline</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">schnorr_sign</span><span class="p">(</span><span class="s2">&quot;WITHDRAW&quot;</span><span class="p">,</span> <span class="n">mysk</span><span class="p">)))</span>
+
+<span class="c1">#Here is your coin: rwctf{P1Ain_SChNorr_n33Ds_m0re_5ecur1ty!}</span>
+<span class="n">io</span><span class="o">.</span><span class="n">interact</span><span class="p">()</span>
+</pre></div>
                 
                   
                 
