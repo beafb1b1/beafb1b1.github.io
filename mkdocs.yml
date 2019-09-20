@@ -52,7 +52,8 @@ nav:
     - home: index.md
     - kernel:
         - linux内核基础: kernel/linux_kernel_base.md
-    - blockchain: blockchain/index.md
+    - blockchain:
+        - 资料收集: blockchain/index.md
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
         - N1CTF2019 h4ck Smart Contract: blockchain/n1ctf_2019_smartcontract.md
         - HCTF2018 ez2win: blockchain/hctf_2018_ez2win.md
