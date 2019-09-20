@@ -31,7 +31,7 @@ function gift() public {
         balanceOf[msg.sender]-=value;
         balanceOf[to]+=value;
 }
-````
+```
 转战函数无法整形溢出，这里考点就是薅羊毛攻击
 通过建立多个自合约领取空投，然后转账给固定账户即可完成攻击payforflag
 ```js
