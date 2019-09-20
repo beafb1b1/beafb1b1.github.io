@@ -11,6 +11,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://beafb1b1.github.io/blockchain/</loc>
+     <lastmod>2019-09-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://beafb1b1.github.io/blockchain/realworldctf_2019_bank/</loc>
      <lastmod>2019-09-20</lastmod>
      <changefreq>daily</changefreq>
@@ -42,11 +47,6 @@
     </url>
     <url>
      <loc>https://beafb1b1.github.io/blockchain/byte2019_bet_hf/</loc>
-     <lastmod>2019-09-20</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc>https://beafb1b1.github.io/blockchain/collisions/</loc>
      <lastmod>2019-09-20</lastmod>
      <changefreq>daily</changefreq>
     </url>
