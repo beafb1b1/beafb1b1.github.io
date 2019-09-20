@@ -6,4 +6,6 @@
 
 **email**: beafb1b1@gmail.com
 
+**challenges**: [https://github.com/beafb1b1/challenges](https://github.com/beafb1b1/challenges)
+
 ![](/assets/images/b1b1.png)
