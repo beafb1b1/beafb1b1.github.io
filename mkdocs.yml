@@ -52,7 +52,7 @@ nav:
     - home: index.md
     - kernel:
         - linux内核基础: kernel/linux_kernel_base.md
-    - blockchain:
+    - blockchain: blockchain/index.md
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
         - N1CTF2019 h4ck Smart Contract: blockchain/n1ctf_2019_smartcontract.md
         - HCTF2018 ez2win: blockchain/hctf_2018_ez2win.md
@@ -60,7 +60,6 @@ nav:
         - CISCN 2019 Daysbank: blockchain/ciscn2019_daysbank.md
         - QWB 2019 babybank&babybet: blockchain/qwb2019_babybank_babybet.md
         - ByteCTF 2019 bet&hf: blockchain/byte2019_bet_hf.md
-        - Collisions: blockchain/collisions.md
     - backup:
         - RWCTF2018 station-escape: backup/realworldctf_2018_stationescape.md
         - gitpage采坑: backup/gitpage_fuck.md
