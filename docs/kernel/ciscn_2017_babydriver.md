@@ -1,4 +1,4 @@
-# CISCN 2017 babydriver
+# CISCN 2017 babydriver (UAF利用方法)
 
 题目链接: [https://github.com/beafb1b1/challenges/tree/master/kernel/CISCN_2017_babydriver](https://github.com/beafb1b1/challenges/tree/master/kernel/CISCN_2017_babydriver)
 
@@ -265,8 +265,6 @@ int __fastcall babyrelease(inode *inode, file *filp)
 
 ## 漏洞利用
 
-### UAF
-
 这里存在一个UAF漏洞，babydev_struct是全局变量，如果我们open设备两次，那么第二次open的时候就会覆盖第一次open的babydev_struct，此时free掉第一个，第二个指向的就是free后的，因此这里存在一个UAF。
 
 这里考虑的一种简单的利用方法利用UAF去修改新进程的CRED结构，从而打成权限提升的效果。首先我们看一下该内核版本的CRED结构：
@@ -378,4 +376,75 @@ int main()
 ➜  Desktop file exploit 
 exploit: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, for GNU/Linux 3.2.0, BuildID[sha1]=b4df5ea181b300281f32a5e9a974ccd2f24f2ee3, not stripped
 ```
-将exp放入到rootfs目录中并重新打包：
+因为我们是本地调试，所以可以将exp直接放入到rootfs目录中并重新打包：
+```bash
+➜  Desktop cp exploit ./rootfs/home/ctf/        
+➜  Desktop cd rootfs 
+➜  rootfs find . | cpio -o --format=newc > ../rootfs.cpio
+7216 blocks
+```
+接下来直接运行并执行exp就可以拿到root权限：
+```bash
+/ $ cd /home/ctf
+~ $ ls
+exploit
+~ $ ./exploit 
+[   22.269245] device open
+[   22.270112] device open
+[   22.271025] alloc done
+[   22.271863] device release
+[+] root now.
+/home/ctf # id
+uid=0(root) gid=0(root) groups=1000(ctf)
+```
+
+## 如何调试
+
+我们调试一下，从内核的bzImage文件中我们可以通过如下脚本提取出内核符号文件vmlinux:
+```bash
+/usr/src/linux-headers-$(uname -r)/scripts/extract-vmlinux
+```
+使用方法如下：
+```bash
+➜  Desktop /usr/src/linux-headers-4.15.0-54/scripts/extract-vmlinux bzImage > vmlinux
+➜  Desktop file vmlinux 
+vmlinux: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, BuildID[sha1]=e993ea9809ee28d059537a0d5e866794f27e33b4, stripped
+```
+
+接下来修改一下启动脚本，首先需要在启动命令后添加`-gdb tcp::1234 -S`。
+```bash
+#!/bin/bash
+qemu-system-x86_64 -initrd rootfs.cpio -kernel bzImage -append 'console=ttyS0 root=/dev/ram oops=panic panic=1' -enable-kvm -monitor /dev/null -m 64M --nographic  -smp cores=1,threads=1 -cpu kvm64,+smep -gdb tcp::1234 -S
+```
+
+然后运行启动脚本，这时虚拟机会停等待gdb连接。使用`gdb ./vmlinux`启动gdb，并远程连接到qemu，执行c，让虚拟机继续运行:
+```bash
+gdb ./vmlinux
+...
+pwndbg> target remote localhost:1234
+pwndbg> c
+```
+
+虚拟机运行后我们可以通过如下方式来看ko文件.text段的地址：
+```bash
+/ $ cat /sys/module/babydriver/sections/.text 
+0xffffffffc0000000
+```
+
+接下来加入ko文件的符号表，在gdb中运行`add-symbol-file core.ko textaddr`即可：
+```bash
+pwndbg> add-symbol-file babydriver.ko 0xffffffffc0000000
+add symbol table from file "babydriver.ko" at
+	.text_addr = 0xffffffffc0000000
+Reading symbols from babydriver.ko...done.
+```
+
+然后就可以调试了，此时我们可以直接b函数名（因为ko文件里面带有符号表）：
+```
+pwndbg> b babyopen
+Breakpoint 1 at 0xffffffffc0000030: file /home/atum/PWN/my/babydriver/kernelmodule/babydriver.c, line 28.
+pwndbg> c
+Continuing.
+```
+
+此时我们再运行exp们就会成功断到babyopen。如果没有符号信息的话，就只能计算地址直接b。
