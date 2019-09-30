@@ -50,9 +50,15 @@ markdown_extensions:
 # Contents
 nav:
     - home: index.md
-    - kernel:
+    - linux kernel:
         - linux内核基础: kernel/linux_kernel_base.md
         - CISCN2017 babydriver(UAF): kernel/ciscn_2017_babydriver_UAF.md
+        - QWB2018 core(ROP): kernel/qwb_2018_core_ROP.md
+        - CISCN2017 babydriver(ROP): kernel/ciscn_2017_babydriver_ROP_bypass_smep.md
+        - QWB2018 core(ret2usr): kernel/qwb_2018_core_ret2usr.md
+        - 0CTF2018 babykernel(DF): kernel/0ctf2018_babykernel_double_fetch.md
+        - STARCTF2019 hackme(ARW): kernel/starctf2019_hackeme_arw.md
+        - BPF Exploit: kernel/BPF.md
     - blockchain:
         - 资料收集: blockchain/collision.md
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
