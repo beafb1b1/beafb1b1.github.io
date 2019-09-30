@@ -52,7 +52,7 @@ nav:
     - home: index.md
     - kernel:
         - linux内核基础: kernel/linux_kernel_base.md
-        - CISCN2017 babydriver: kernel/ciscn_2017_babydriver_UAF.md
+        - CISCN2017 babydriver(UAF): kernel/ciscn_2017_babydriver_UAF.md
     - blockchain:
         - 资料收集: blockchain/collision.md
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
