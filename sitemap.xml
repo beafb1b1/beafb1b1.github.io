@@ -16,6 +16,36 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://beafb1b1.github.io/kernel/qwb_2018_core_ROP/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://beafb1b1.github.io/kernel/ciscn_2017_babydriver_ROP_bypass_smep/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://beafb1b1.github.io/kernel/qwb_2018_core_ret2usr/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://beafb1b1.github.io/kernel/0ctf2018_babykernel_double_fetch/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://beafb1b1.github.io/kernel/starctf2019_hackeme_arw/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://beafb1b1.github.io/kernel/BPF/</loc>
+     <lastmod>2019-09-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://beafb1b1.github.io/blockchain/collision/</loc>
      <lastmod>2019-09-30</lastmod>
      <changefreq>daily</changefreq>
