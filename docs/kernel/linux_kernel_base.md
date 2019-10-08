@@ -218,7 +218,7 @@ const char *name; /*符号名*/
 4. **Kernel ASLR**：内核地址空间布局随机化；
 5. **SMAP/SMEP**：SMAP（Supervisor Mode Access Prevention，管理模式访问保护）和SMEP（Supervisor Mode Execution Prevention，管理模式执行保护）的作用分别是禁止内核访问用户空间的数据和禁止内核执行用户空间的代码。arm里面叫PXN（Privilege Execute Never）和PAN（Privileged Access Never）。和NX一样SMAP/SMEP需要处理器支持，如下图，可以通过cat /proc/cpuinfo查看，在内核命令行中添加nosmap和nosmep禁用,是否开启由CPU的CR4寄存器管理.
 ![](/assets/images/kernel/linux_kernel_base/fig5.jpg)
-在没有SMAP/SMEP的情况下把内核指针重定向到用户空间的漏洞利用方式被称为ret2usr。physmap是内核管理的一块非常大的连续的虚拟内存空间，为了提高效率，该空间地址和RAM地址直接映射。RAM相对physmap要小得多，导致了任何一个RAM地址都可以在physmap中找到其对应的虚拟内存地址。另一方面，我们知道用户空间的虚拟内存也会映射到RAM。这就存在两个虚拟内存地址（一个在physmap地址，一个在用户空间地址）映射到同一个RAM地址的情况。也就是说，我们在用户空间里创建的数据，代码很有可能映射到physmap空间。基于这个理论在用户空间用mmap()把提权代码映射到内存，然后再在physmap里找到其对应的副本，修改EIP跳到副本执行就可以了。因为physmap本身就是在内核空间里，所以SMAP/SMEP都不会发挥作用。这种漏洞利用方式叫ret2dir;
+在没有SMAP/SMEP的情况下把内核指针重定向到用户空间的漏洞利用方式被称为ret2usr。physmap是内核管理的一块非常大的连续的虚拟内存空间，为了提高效率，该空间地址和RAM地址直接映射。RAM相对physmap要小得多，导致了任何一个RAM地址都可以在physmap中找到其对应的虚拟内存地址。另一方面，我们知道用户空间的虚拟内存也会映射到RAM。这就存在两个虚拟内存地址（一个在physmap地址，一个在用户空间地址）映射到同一个RAM地址的情况。也就是说，我们在用户空间里创建的数据，代码很有可能映射到physmap空间。基于这个理论在用户空间用mmap()把提权代码映射到内存，然后再在physmap里找到其对应的副本，修改EIP跳到副本执行就可以了。因为physmap本身就是在内核空间里，所以SMAP/SMEP都不会发挥作用。这种漏洞利用方式叫ret2dir。关闭SMEP方法修改 /etc/default/grub 文件中的GRUB_CMDLINE_LINUX=""，加上nosmep/nosmap/nokaslr，然后 update-grub 就好;
 6. **Stack Protector**：和用户态相同，canary；
 7. **Address Protection**：内核空间和用户空间共享虚拟内存地址，因此需要防止用户空间mmap的内存从0开始，从而缓解空指针引用攻击。windows系统从win8开始禁止在零页分配内存。从linux内核2.6.22开始可以使用sysctl设置mmap_min_addr来实现这一保护。
 
