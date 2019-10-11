@@ -424,6 +424,13 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    延申
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     如何调试
   </a>
   
@@ -781,6 +788,13 @@
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    延申
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     如何调试
   </a>
   
@@ -1159,7 +1173,10 @@ exploit
 /home/ctf <span class="c1"># id</span>
 <span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">gid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span> <span class="nv">groups</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>ctf<span class="o">)</span>
 </pre></div></p>
-<h2 id="_3">如何调试<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_3">延申<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>在新版本的内核中这种攻击方式无效了，因为新进程的cred结构体会有一个单独的区域进行申请，因此UAF漏洞无法利用成功，这种新的特征叫做lockdown，详细可以参考：
+<a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=aefcf2f4b58155d27340ba5f9ddbe9513da8286d">lockdown</a></p>
+<h2 id="_4">如何调试<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>我们调试一下，从内核的bzImage文件中我们可以通过如下脚本提取出内核符号文件vmlinux:
 <div class="codehilite"><pre><span></span>/usr/src/linux-headers-<span class="k">$(</span>uname -r<span class="k">)</span>/scripts/extract-vmlinux
 </pre></div>
