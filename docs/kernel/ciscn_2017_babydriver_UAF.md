@@ -398,6 +398,11 @@ exploit
 uid=0(root) gid=0(root) groups=1000(ctf)
 ```
 
+## 延申
+
+在新版本的内核中这种攻击方式无效了，因为新进程的cred结构体会有一个单独的区域进行申请，因此UAF漏洞无法利用成功，这种新的特征叫做lockdown，详细可以参考：
+[lockdown](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=aefcf2f4b58155d27340ba5f9ddbe9513da8286d)
+
 ## 如何调试
 
 我们调试一下，从内核的bzImage文件中我们可以通过如下脚本提取出内核符号文件vmlinux:
