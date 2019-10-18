@@ -59,6 +59,7 @@ nav:
         - 0CTF2018 babykernel(DF): kernel/0ctf2018_babykernel_double_fetch.md
         - STARCTF2019 hackme(ARW): kernel/starctf2019_hackeme_arw.md
         - RW BPF(Integer Overflow): kernel/BPF_IntOF.md
+        - balsn2018 Krazynote: kernel/balsn2019_Kcrazynote.md
     - blockchain:
         - 资料收集: blockchain/collision.md
         - RWCTF2019 bank: blockchain/realworldctf_2019_bank.md
