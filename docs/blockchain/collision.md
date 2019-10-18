@@ -21,4 +21,4 @@ RoarCTF2019 coinflip: [传送](https://hitcxy.com/2019/CoinFlip/)
 
 Hackergame2019 JCbank: [传送](https://hitcxy.com/2019/JCBank/)
 
-Balsh blockchain challenges: 尚未找到两个合约题目的wp，只有一个[AEG](https://ctftime.org/writeup/16733)题目的
+Balsh blockchain challenges: 尚未找到[两个合约题目](https://github.com/beafb1b1/challenges/tree/master/balsn/2019)的wp，只有[AEG](https://ctftime.org/writeup/16733)的wp
