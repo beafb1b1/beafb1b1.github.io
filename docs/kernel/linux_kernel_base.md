@@ -335,7 +335,7 @@ clean:
 
 ![](/assets/images/kernel/linux_kernel_base/fig8_1.jpg)
 
-上述的代码: [https://github.com/beafb1b1/challenges/tree/master/kernelstudy](https://github.com/beafb1b1/challenges/tree/master/kernelstudy)
+上述的代码: [传送门](https://github.com/beafb1b1/challenges/tree/master/kernel专题/study)
 
 ## Reference
 

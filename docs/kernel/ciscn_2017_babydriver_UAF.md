@@ -1,6 +1,6 @@
 # CISCN 2017 babydriver (UAF利用方法)
 
-题目链接: [https://github.com/beafb1b1/challenges/tree/master/kernel/CISCN_2017_babydriver](https://github.com/beafb1b1/challenges/tree/master/kernel/CISCN_2017_babydriver)
+题目链接: [传送门](https://github.com/beafb1b1/challenges/tree/master/kernel专题/CISCN_2017_babydriver)
 
 ## 前置操作
 
