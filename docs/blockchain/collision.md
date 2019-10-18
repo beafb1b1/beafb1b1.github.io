@@ -4,7 +4,7 @@
 练习平台: [https://ethernaut.openzeppelin.com/](https://ethernaut.openzeppelin.com/)
 
 ## 收集的PPT和Dorahacks题目
-[https://github.com/beafb1b1/challenges/tree/master/blochchains](https://github.com/beafb1b1/challenges/tree/master/blochchains)
+[传送](https://github.com/beafb1b1/challenges/tree/master/blochchains学习资料)
 
 ## Challenges
 WCTF belluminar: [https://github.com/beched/ctf/tree/master/2018/wctf-belluminar](https://github.com/beched/ctf/tree/master/2018/wctf-belluminar)
