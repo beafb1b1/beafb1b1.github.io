@@ -1241,9 +1241,25 @@ Continuing.
                 
               
               
-                
-
-
+                <h2 id="__comments">Comments</h2>
+<form id="gitalk-form" onsubmit="return false;">
+    <div id="gitalk-container"></div>
+</form>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdnjs.loli.net/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
+<script>
+    const gitalk = new Gitalk({
+        clientID: '6765962962a53c8c5e4b', // add yourself's
+        clientSecret: '015b46fb847e975858917caef251f8174ed9af51', // add yourself's
+        repo: 'comment',
+        owner: 'f61d', // add yourself's
+        admin: ['f61d'], // add yourself's
+        id: md5(location.pathname),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+    gitalk.render('gitalk-container')
+</script>
               
             </article>
           </div>
